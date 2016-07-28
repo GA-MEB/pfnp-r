@@ -162,7 +162,7 @@ put them into our Zoom chat as a 'parking lot', to be answered later.
 ### Demo: Make an HTML Page
 
 <!-- est 10 mins -->
-### Exercise: Make an HTML Page 
+### Exercise: Make an HTML Page
 
 In Cloud9, go to your `static-page` workspace, and at the root
 (i.e the outermost level) of the filesystem, create a new
@@ -172,13 +172,13 @@ Copy all of the text from [cookies.txt](exercises/cookies.txt) into that file
 and 'HTML-ify' it by adding the appropriate HTML tags in and around the content.
 
 <!-- est 5 mins -->
-### [Read: CSS](readings/css.md)  
+### [Read: CSS](readings/css.md)
 
 <!-- est 10 mins -->
-### Demo: Add CSS Styling to a Page 
+### Demo: Add CSS Styling to a Page
 
 <!-- est 10 mins -->
-### Exercise: Add CSS Styling to a Page 
+### Exercise: Add CSS Styling to a Page
 
 Go back to your Cloud9 workspace from the previous exercise and create a new
 directory called `stylesheets`; inside it, create a new file called
@@ -251,10 +251,10 @@ Using only the terminal,
 8.  recursively delete `example-dir` and all of the files it contains.
 
 <!-- est 5 mins -->
-### [Read: Save Work with Git](readings/git.md) 
+### [Read: Save Work with Git](readings/git.md)
 
 <!-- est 20 mins -->
-### Code-Along: Save Work with Git 
+### Code-Along: Save Work with Git
 
 1.  Once you've run `git init`, run `git status` -- it should show that you have
     files with uncommitted changes.
@@ -286,7 +286,7 @@ Using only the terminal,
 including two 10-min breaks and 5-min standup -->
 
 <!-- est 5 mins -->
-### [Read: Variables and Flow Control](readings/js-vars-flow.md) 
+### [Read: Variables and Flow Control](readings/js-vars-flow.md)
 
 <!-- est 10 mins -->
 ### Code-Along: Variables and Flow Control
@@ -464,7 +464,7 @@ console.log(sum);
 ```
 
 <!-- est 20 mins -->
-### Exercise: Iteratively Edit Objects 
+### Exercise: Iteratively Edit Objects
 
 Now that we've seen iteration, let's try iterating through an array of objects.
 You'll see very soon why this is a useful pattern to understand.
@@ -481,33 +481,90 @@ REACH: Instead of an array, build a string to hold a list of names; separate
 each name using commas and appropriate spaces (assume Oxford comma).
 
 <!-- est 5 mins -->
-### [Read: The DOM](readings/dom.md) 
+### [Read: The DOM](readings/dom.md)
 
 <!-- est 10 mins -->
-### Code-Along: Manipulate the DOM 
+### Code-Along: Manipulate the DOM
 
-Let's fill out the HTML file we emptied earlier with some new HTML.
-Instead of a website page, we're going to make it a to-do list.
+One last note before getting started:
+We can run JS code in the browser console and access the DOM that
+way, but in order to actually load a JS file from our HTML, like we did with CSS
+earlier today, we need to include a `<script>` tag whose `src` property is set
+to the path from the HTML file to the JS code (just like we did with `href`
+inside the `<link>` tag).
 
-```html
-<h1> To-Do </h1>
+1.  First, let's make a file for our JS code that the page can load.
+    Create a new directory called `scripts`, and inside that directory,
+    create a new file called `main.js`.
 
-<ul>
-  <lh> Tasks to Complete </lh>
-  <li> Buy milk </li>
-  <li> Mow the lawn </li>
-  <li> See the doctor </li>
-</ul>
-```
+2.  Next, let's fill out the HTML file we emptied earlier with some new HTML.
+    Instead of a recipe page, we're going to make it a to-do list.
 
-1. Let's programatically add some styling to the top header, by increasing
-   the font size to 100px.
+    ```html
+    <html>
+      <head>
+        <link rel='stylesheet' type='text/css' href='stylesheets/style.css'>
+      </head>
+      <body>
+        <h1> To-Do List </h1>
+        <ul>
+          <lh> Tasks to Complete </lh>
+          <li> Buy milk </li>
+          <li> Mow the lawn </li>
+          <li> See the doctor </li>
+        </ul>
+      </body>
+      <script src='javascripts/main.js'></script>
+    </html>
+    ```
 
-   ```js
-   document.getElementsByTagName('h1')[0].style.fontSize = '100px';
-   ```
+    > NOTE: The reason that our script tag is at the bottom of the page is
+    > so that
+    > the browser reads an HTML file from top to bottom, so putting the script
+    > at
+    > the bottom causes it to get loaded last by the browser; this is desirable
+    > because we don't want the browser to get confused by trying to change an
+    > element that doesn't exist yet.
 
-2.  Next, let's define a new class in our CSS file called
+3.  Let's programatically add some styling to the top header, by increasing
+    the font size to 100px.
+
+    ```js
+    document.getElementsByTagName('h1')[0].style.fontSize = '100px';
+    ```
+
+4.  Next, let's define a new class in our CSS file called 'completed'. This will
+    be used to style any tasks that have already been completed.
+
+    ```css
+    .completed {
+      background-color: #505050;
+      text-decoration: line-through;
+    }
+    ```
+
+    Just as an example, let's manually add that class to "See the doctor" item
+    and see what happens. Then, let's remove it again.
+
+5.  OK, now let's use the DOM to grab the middle two list items and add the
+    `completed` class to both of those items.
+
+    ```js
+    var items = document.getElementsByTagName('li');
+    items[1].classList.add('completed');
+    items[2].classList.add('completed');
+    ```
+
+    What do we see in the browser?
+
+6.  Now let's actually remove the `completed` class from 'Mow the lawn';
+    it looks like we may have missed a spot.
+
+    ```js
+    var mow = document.getElementsByTagName('li')[3];
+    mow.classList.remove('completed');
+    // alternatively, mow.classList.toggle('completed');
+    ```
 
 <!-- END DAY 1 -->
 <!-- ### Exercise: Manipulate the DOM <!-- est 20 mins -->

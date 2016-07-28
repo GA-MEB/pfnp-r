@@ -24,12 +24,7 @@ A full list of the properties available on a JS DOM object can be found
 [here](https://developer.mozilla.org/en-US/docs/Web/API/Element),
 but the ones you're most likely to use are the `.innerhtml`
 (for changing the inside of an element), `.children` (to grab a list of elements
-inside a given element), and `.style`
-(to modify [CSS styling](http://www.w3schools.com/cssref) for that element).
-
-One last note before getting started:
-We can run JS code in the browser console and access the DOM that
-way, but in order to actually load a JS file from our HTML, like we did with CSS
-earlier today, we need to include a `<script>` tag whose `src` property is set
-to the path from the HTML file to the JS code (just like we did with `href`
-inside the `<link>` tag).
+inside a given element), `.style` (to directly modify
+[CSS styling](http://www.w3schools.com/cssref) for that element), and
+[`.classList`](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList)
+(for adding and removing CSS classes).
