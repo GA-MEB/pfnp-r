@@ -155,11 +155,14 @@ put them into our Zoom chat as a 'parking lot', to be answered later.
 <!-- est 105 mins, including a 15 min break -->
 ## Making and Styling Static Pages
 
-### [Read: HTML](readings/html.md)  <!-- est 5 mins -->
+<!-- est 5 mins -->
+### [Read: HTML](readings/html.md)
 
-### Demo: Make an HTML Page  <!-- est 10 mins -->
+<!-- est 10 mins -->
+### Demo: Make an HTML Page
 
-### Exercise: Make an HTML Page <!-- est 10 mins -->
+<!-- est 10 mins -->
+### Exercise: Make an HTML Page 
 
 In Cloud9, go to your `static-page` workspace, and at the root
 (i.e the outermost level) of the filesystem, create a new
@@ -168,11 +171,14 @@ file there called `index.html`.
 Copy all of the text from [cookies.txt](exercises/cookies.txt) into that file
 and 'HTML-ify' it by adding the appropriate HTML tags in and around the content.
 
-### [Read: CSS](readings/css.md)  <!-- est 5 mins -->
+<!-- est 5 mins -->
+### [Read: CSS](readings/css.md)  
 
-### Demo: Add CSS Styling to a Page <!-- est 10 mins -->
+<!-- est 10 mins -->
+### Demo: Add CSS Styling to a Page 
 
-### Exercise: Add CSS Styling to a Page <!-- est 10 mins -->
+<!-- est 10 mins -->
+### Exercise: Add CSS Styling to a Page 
 
 Go back to your Cloud9 workspace from the previous exercise and create a new
 directory called `stylesheets`; inside it, create a new file called
@@ -202,11 +208,14 @@ REACH: Make it so that...
 
 -   The first letter of each step in the recipe is a little bigger than normal.
 
-### [Read: CSS for Layout](readings/css-layout.md) <!-- est 10 mins -->
+<!-- est 10 mins -->
+### [Read: CSS for Layout](readings/css-layout.md)
 
-### Demo: CSS for Layout <!-- est 15 mins -->
+<!-- est 15 mins -->
+### Demo: CSS for Layout
 
-### Exercise: CSS for Layout <!-- est 10 mins -->
+<!-- est 10 mins -->
+### Exercise: CSS for Layout
 
 Go back to your recipe site, and change the layout so that
 
@@ -221,9 +230,11 @@ Go back to your recipe site, and change the layout so that
 <!-- est 45 mins -->
 ## Working Like a Developer
 
-### [Read: Use a Command Line Interface](readings/cli.md) <!-- est 5 mins -->
+<!-- est 5 mins -->
+### [Read: Use a Command Line Interface](readings/cli.md)
 
-### Exercise: Use a Command Line Interface <!-- est 15 mins -->
+<!-- est 15 mins -->
+### Exercise: Use a Command Line Interface
 
 In your Cloud9 workspace, open up a terminal window -- it should say 'bash' at
 the top of the tab.
@@ -239,9 +250,11 @@ Using only the terminal,
 7.  move back up to your parent directory
 8.  recursively delete `example-dir` and all of the files it contains.
 
-### [Read: Save Work with Git](readings/git.md) <!-- est 5 mins -->
+<!-- est 5 mins -->
+### [Read: Save Work with Git](readings/git.md) 
 
-### Code-Along: Save Work with Git <!-- est 20 mins -->
+<!-- est 20 mins -->
+### Code-Along: Save Work with Git 
 
 1.  Once you've run `git init`, run `git status` -- it should show that you have
     files with uncommitted changes.
@@ -272,9 +285,11 @@ Using only the terminal,
 <!-- est 230 mins over two days,
 including two 10-min breaks and 5-min standup -->
 
-### [Read: Variables and Flow Control](readings/js-vars-flow.md) <!-- est 5 mins -->
+<!-- est 5 mins -->
+### [Read: Variables and Flow Control](readings/js-vars-flow.md) 
 
-### Code-Along: Variables and Flow Control <!-- est 10 mins -->
+<!-- est 10 mins -->
+### Code-Along: Variables and Flow Control
 
 We're going to write a simple program to act as a virtual thermostat.
 This thermostat will need to run for some unknown amount of time, which
@@ -324,13 +339,15 @@ while (actualTemp !== desiredTemp) {
 }
 ```
 
-### Exercise: Variables and Flow Control <!-- est 20 mins -->
+<!-- est 20 mins -->
+### Exercise: Variables and Flow Control
 
 Write a little script that raises 2 to a power specified by a variable called
 `power`, and prints out the final result.
 There's more than one way to solve this.
 
-### Demo: Arrays and Objects in JS <!-- est 10 mins -->
+<!-- est 10 mins -->
+### Demo: Arrays and Objects in JS
 
 In addition to basic data types like strings and numbers, JavaScript also has
 two data types for managing _collections of things_, called **arrays** and
@@ -387,7 +404,8 @@ console.log(obj.keyOne); // prints 'A'
 When written this way, it's common to refer to `keyOne` and `keyTwo` as
 "properties" of the object.
 
-### Code-Along: Iterate Through Arrays <!-- est 10 mins -->
+<!-- est 10 mins -->
+### Code-Along: Iterate Through Arrays
 
 We're going to go through a very common pattern - using a 'for' loop to step
 through every element in an array, and then do something with each element as it
@@ -445,7 +463,8 @@ for (var i = 0; i <= numbers.length - 1; i += 1) { //could also be i < numbers.l
 console.log(sum);
 ```
 
-### Exercise: Iteratively Edit Objects <!-- est 20 mins -->
+<!-- est 20 mins -->
+### Exercise: Iteratively Edit Objects 
 
 Now that we've seen iteration, let's try iterating through an array of objects.
 You'll see very soon why this is a useful pattern to understand.
@@ -461,9 +480,11 @@ inches, append their name to an array (look up how you might do this) called
 REACH: Instead of an array, build a string to hold a list of names; separate
 each name using commas and appropriate spaces (assume Oxford comma).
 
-### [Read: The DOM](readings/dom.md) <!-- est 5 mins -->
+<!-- est 5 mins -->
+### [Read: The DOM](readings/dom.md) 
 
-### Code-Along: Manipulate the DOM <!-- est 10 mins -->
+<!-- est 10 mins -->
+### Code-Along: Manipulate the DOM 
 
 Let's fill out the HTML file we emptied earlier with some new HTML.
 Instead of a website page, we're going to make it a to-do list.
@@ -489,9 +510,7 @@ Instead of a website page, we're going to make it a to-do list.
 2.  Next, let's define a new class in our CSS file called
 
 <!-- END DAY 1 -->
-<!--
-### Exercise: Manipulate the DOM <!-- est 20 mins -->
--->
+<!-- ### Exercise: Manipulate the DOM <!-- est 20 mins -->
 
 <!-- ### Demo: Define and Invoke Functions <!-- est 10 mins -->
 
