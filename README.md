@@ -869,7 +869,8 @@ var server = http.createServer(function(request, response){
 });
 ```
 
-### Exercise: Add More Routing <!-- est 25 mins -->
+<!-- est 25 mins -->
+### Exercise: Add More Routing
 
 Now that we've set up this application, add some more routes and responses.
 Make it so that you app will respong to routes of the form `/people/1`,
