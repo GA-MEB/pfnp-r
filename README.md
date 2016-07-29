@@ -883,9 +883,11 @@ and respond with the name of the person in that position in the array below.
 If any other URL is given, or if no person exists at that index, return some
 sort of error message.
 
-<!-- ## Serving Data from a Database <!-- est 25 mins -->
+<!-- est 25 mins -->
+## Serving Data from a Database
 
-<!-- ### [Read: SQL Databases]() <!-- 10 mins -->
+<!-- 10 mins -->
+### [Read: PostgreSQL](readings/postgresql.md)
 
 <!-- ### Code-Along : Using PostgreSQL <!-- 10 mins -->
 
