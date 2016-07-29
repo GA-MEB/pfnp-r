@@ -28,3 +28,63 @@ inside a given element), `.style` (to directly modify
 [CSS styling](http://www.w3schools.com/cssref) for that element), and
 [`.classList`](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList)
 (for adding and removing CSS classes).
+
+## jQuery
+
+In the field, you'll often see people using a JavaScript **library**
+(a published collection of code) called [**jQuery**](http://jquery.com/)
+for manipulating the DOM.
+
+| Vanilla JS Syntax                                      | Rough jQuery Equivalent                            |
+|--------------------------------------------------------|----------------------------------------------------|
+| `document.getElementsByTagName('li')`                  | `$('li')`                                          |
+| `document.getElementsByClassName('my-class')`          | `$('.my-class')`                                   |
+| `document.getElementById('submit-form')`               | `$('#submit-form')`                                |
+| `someJsDomElement.innerHTML = '<p> New text </p>'`     | `$someJqueryObject.html('<p> New text </p>')`      |
+| `someJsDomElement.innerHTML += '<p> New text </p>'`    | `$someJqueryObject.append('<p> New text </p>')`    |
+| `someJsDomElement.classList.add('class-to-add')`       | `$someJqueryObject.addClass('class-to-add')`       |
+| `someJsDomElement.classList.remove('class-to-remove')` | `$someJqueryObject.removeClass('class-to-remove')` |
+| `someJsDomElement.style.color`                         | `$someJqueryObject.css('color')`                   |
+| `someJsDomElement.style.color = '#FF0000'`             | `$someJqueryObject.css('color', '#FF0000')`        |
+
+> 'ID' is another type of property, like classes, that can be used to identify
+> DOM elements. However, unlike classes, an element can only have one ID, and an
+> ID can only refer to one element. In terms of specificity, ID rules beat even
+> class rules; nevertheless, it is more common to see IDs used with JavaScript
+> than CSS, because (a) with JS, the uniqueness of an ID helps to avoid
+> incorrect behavior, and (b) with CSS, you're often in the position of wanting
+> to use styles in multiple places.
+> **TL;DR** : Use classes for styling; use IDs for working with JS.
+
+As you can see, the jQuery commands tend to be shorter, and this has the nice
+effect of making code easer to read (a _very_ good thing -- code that's easy
+to read and understand is usually code that's easy to maintain and update).
+
+They also all use an existing standard, CSS selectors, as their default
+system for looking up elements; though the ordinary JS DOM supports that through
+`document.querySelector`, it's still a clunkier interface than jQuery.
+And on top of all of that, jQuery doesn't just give back an array of elements --
+it gives back a special jQuery object, which provides additional helpful
+properties and pre-programmed behaviors that make working with the collection
+rather easy.
+
+However, many developers dislike jQuery because they feel that it's too complex
+a library, and tries to do too many things (DOM manipulation, event handling
+animations, and more).
+It also runs more slowly slower than plain-old-vanilla JavaScript,
+[as certain snarky devs like to point out](http://vanilla-js.com/),
+and it's less well supported by older web browsers.
+
+Since jQuery is an external library, you need to either downloaded it from
+the [official jQuery website](http://jquery.com/), or link to a hosted copy of
+the code through a [**content delivery network**](https://code.jquery.com/),
+or **CDN**. The advantage to using a CDN is that you don't need to
+download anything, but the downside is that you'll only be able to access
+the library when your internet is working...
+
+To load jQuery into your page so that you can use it in your own code,
+create another pair of `<script>` tags
+**above the tags that load your own JS code**,
+and set `src` to whatever location (CDN or local) jQuery is at.
+
+The full documentation for jQuery is available online [here](http://api.jquery.com).

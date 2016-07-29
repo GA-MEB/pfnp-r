@@ -21,7 +21,7 @@ operating on a few different types/formats of data, but the most basic ones
 are numbers (`0`, `2.4`, `-100`), text strings (`'hello world'`), and
 boolean values (`true` / `false`).
 
-For now, we're going to interact with JS through a program called a REPL -
+We're going to start off inginteract with JS through a program called a REPL -
 that stands for 'READ-EVALUATE-PRINT LOOP', a description of what it does.
 Once you input an **expression** containing some values, it attempts to
 **evaluate**, or solve, that expression, print the result, and start all over.
@@ -72,7 +72,7 @@ In JavaScript, the three most fundamental methods of flow control are:
 
 Here are some simple examples of the syntax for each type.
 
-#### Conditionals
+## Conditionals
 
 **if**
 
@@ -116,7 +116,7 @@ if (a > 1) {
 }
 ```
 
-#### Loops
+## Loops
 
 **while**
 
