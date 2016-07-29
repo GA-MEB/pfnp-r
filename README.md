@@ -289,7 +289,7 @@ including two 10-min breaks and 5-min standup -->
 ### [Read: Variables and Flow Control](readings/js-vars-flow.md)
 
 <!-- est 5 mins -->
-### [Read: Add JS to Your Page](readings/js-vars-flow.md)
+### [Read: Add JS to Your Page](readings/js-html.md)
 
 <!-- est 10 mins -->
 ### Code-Along: Variables and Flow Control
@@ -404,7 +404,7 @@ for (var i = 0; i <= numbers.length - 1; i += 1) { //could also be i < numbers.l
 console.log(sum);
 ```
 
-<!-- est 40 mins -->
+<!-- est 20 mins -->
 ### Exercise: Iteratively Edit Objects
 
 Now that we've seen iteration, let's try iterating through an array of objects.
@@ -704,8 +704,7 @@ code.
     ```js
     var server = http.createServer(function(request, response){
       console.log('Hit the server!');
-      console.log('request method:', request.method);
-      console.log('request url:', request.url);
+      console.log('request method:', request.method, 'request url:', request.url);
       response.end();
     });
     ```
@@ -731,8 +730,7 @@ code.
     ```js
     var server = http.createServer(function(request, response){
       console.log('Hit the server!');
-      console.log('request method:', request.method);
-      console.log('request url:', request.url);
+      console.log('request method:', request.method, 'request url:', request.url);
       response.write(`Received a ${request.method} request at ${request.url}\n`);
       response.end();
     });
@@ -766,8 +764,7 @@ code.
     ```js
     var server = http.createServer(function(request, response){
       console.log('Hit the server!');
-      console.log('request method:', request.method);
-      console.log('request url:', request.url);
+      console.log('request method:', request.method, 'request url:', request.url);
       var content = `<h1> Received a ${request.method} request at ${request.url} </h1>`
       response.write(htmlPage(content));
       response.end();
@@ -775,29 +772,124 @@ code.
     ```
 
 <!-- est 20 mins -->
-### Code-Along : Add Routing
+### Code-Along : Add Routing (with Dynamic Segments)
+
+Being able to respond to requests is great, but it would be better if we could
+be more granular, and respond differently to different requests (i.e. different
+combinations of methods and URLs). That process, of parsing a requst and
+determining how to respond, is called **routing**, and it's a core concern for
+building a web application.
+
+Let's start by adding some flow control to the server's controlling
+function. Say that we want the HTML returned to vary based on the URL:
+it should have one response for requests at `localhost:4000/my-first-page`,
+one response for requests at `.../my-second-page`, and should respond with
+an error message for any other URL. We could set this up by using
+`if...else if...else`.
+
+```js
+var server = http.createServer(function(request, response){
+  console.log('Hit the server!');
+  console.log('request method:', request.method), 'request url:', request.url);
+  var content = `<h1> Received a ${request.method} request at ${request.url} </h1>`;
+  if (request.url === '/my-first-page') {
+    content += '<h2> This is page #1. </h2>';
+  } else if (request.url === '/my-second-page') {
+    content += '<h2> This is page #2. </h2>';
+  } else {
+    content += '<h1>ERROR!!!</h1>'
+  }
+  response.write(htmlPage(content));
+  response.end();
+});
+```
+
+Now when we navigate to either URL in the browser, we see the appropriate
+content, and when we navigate anwere else we see an error message.
+
+What if, instead of having the URLs be `/my-first-page` and `/my-second-page`,
+we wanted them to be `/my-pages/1` and `/my-pages/2`? We could hard-code them,
+but what if we wanted to have an arbitrary number of pages? Surely we can't
+hard-code all of them.
+
+One way to do this is to use a URL _pattern_ rather than a specific fixed URL
+to match with, with some parts that are just expected to vary. These sections
+are called **dynamic segments**.
+
+Knowing how to break apart the URL to identify the dynamic segments is tricky,
+but we can use **Regex** to figure out if the URLs match the
+target pattern. "Regex", or **regular expressions**, is a special language
+designed specifically for matching patterns in text. We're not going to cover
+Regex right now, but here are some great places to learn more about it:
+
+-   [Rgex Tutorial](http://www.regular-expressions.info/tutorial.html)
+-   [Regexr](http://regexr.com/)
+-   [Regex Golf](http://regex.alf.nu/)
+
+JavaScript strings all have
+[a method called `.match`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match)
+which allows them to compare themselves to a regular expression
+that you pass in; this method gives back an array of every instance where
+the characters in the string match the regex, or returns a special value called
+`null` (representing 'nothing') if it finds no matches.
+
+The Regex pattern `/^\/my-pages\/(\d+)$/` means
+"the start of the string (`^`),
+followed by a slash (`\/`),
+followed by 'my-pages'(`my-pages`),
+followed by another slash(`\/`),
+followed by a set of numbers that's at least one number long (`\d+`),
+followed by the end of the string (`$`);
+also, save that set of numbers in case I need it".
+This pattern should only match urls like `/my-pages/1` or `/my-pages/100`,
+never URLs like `/my-pages/a3`, `/my-pages-1`, etc.
+
+Let's add this Regex to our code via the `match` method.
+
+```js
+var server = http.createServer(function(request, response){
+  console.log('Hit the server!');
+  console.log('request method:', request.method), 'request url:', request.url);
+  var content = `<h1> Received a ${request.method} request at ${request.url} </h1>`;
+  if (request.url.match(/^\/my-pages\/(\d+)$/)) {
+    var matches = request.url.match(/^\/my-pages\/(\d+)$/);
+    // matches should equal ['/my-pages/1'. '1'] for `/my-pages/1`
+    if (matches[1] === 1) {
+      content += '<h2> This is page #1. </h2>';
+    } else if (matches[1] === 2) {
+      content += '<h2> This is page #2. </h2>';
+    }
+    // this could also be written withut the conditional statements
+    // as "content += `<h2> This is page #${matches[1]}. </h2>`;"
+  } else {
+    content += '<h1>ERROR!!!</h1>'
+  }
+  response.write(htmlPage(content));
+  response.end();
+});
+```
 
 ### Exercise: Add More Routing <!-- est 25 mins -->
 
 Now that we've set up this application, add some more routes and responses.
+Make it so that you app will respong to routes of the form `/people/1`,
+and respond with the name of the person in that position in the array below.
 
+```js
+['Harry', 'Bob', 'Susan', 'Lana', 'Charlie', 'Louise']
+```
 
-<!--
-## Delivering Dynamic Pages with Node <!-- est 120 mins -->
+If any other URL is given, or if no person exists at that index, return some
+sort of error message.
 
-<!-- ### Code-Along: Serve Template Strings <!-- est 15 mins -->
+<!-- ## Serving Data from a Database <!-- est 25 mins -->
 
-<!-- ### Exercise: Add 'View' Templates to Your App <!-- est 20 mins -->
+<!-- ### [Read: SQL Databases]() <!-- 10 mins -->
 
-<!--
-## Serving Data from a Database <!-- est 25 mins -->
-
-<!-- ### Read and Code: SQL Databases <!-- 10 mins -->
+<!-- ### Code-Along : Using PostgreSQL <!-- 10 mins -->
 
 <!-- ### Read: ORMs <!-- 5 mins -->
 
-
-
 <!-- ### Read : NoSQL Databases <!-- 10 mins -->
 
-## Next Steps
+## [Next Steps](readings/next-steps/md)
