@@ -288,6 +288,9 @@ including two 10-min breaks and 5-min standup -->
 <!-- est 5 mins -->
 ### [Read: Variables and Flow Control](readings/js-vars-flow.md)
 
+<!-- est 5 mins -->
+### [Read: Add JS to Your Page](readings/js-vars-flow.md)
+
 <!-- est 10 mins -->
 ### Code-Along: Variables and Flow Control
 
@@ -339,72 +342,10 @@ while (actualTemp !== desiredTemp) {
 }
 ```
 
+<!-- est 10 mins -->
+### [Read: Arrays and Objects in JS](readings/js-arrays-objects.md)
+
 <!-- est 20 mins -->
-### Exercise: Variables and Flow Control
-
-Write a little script that raises 2 to a power specified by a variable called
-`power`, and prints out the final result.
-There's more than one way to solve this.
-
-<!-- est 10 mins -->
-### Demo: Arrays and Objects in JS
-
-In addition to basic data types like strings and numbers, JavaScript also has
-two data types for managing _collections of things_, called **arrays** and
-**objects**. An array is an ordered list of things (any kind of thing) where any
-item on the list can be accessed via its **index**
-(i.e. its position in the list).
-
-```js
-var array = [ 'a', 'b', 'c', 'd', 'e'];
-// index vals: 0    1    2    3    4
-// don't ask why it starts at 0; it just does.
-```
-
-The syntax for doing this involves using square braces (`[]`).
-
-```js
-console.log(array[2]); // prints out 'c'
-array[2] = 'z';
-console.log(array[2]); // prints out 'z'
-```
-
-JavaScript Objects (also sometimes called dictionaries, hashes,
-or associative arrays), are collections of **keys** and **values**,
-where values can be any type of data, and keys are _strings_ used to look up
-thos values (much like how items in an array are looked up by their index).
-
-```js
-var obj = {
-  'keyOne': 'z', // note that quotes for the keys are optional
-  'keyTwo': 'a'
-};
-```
-
-Note that there is no inherant order to these pairs of keys and values; in this
-particular case, sorting by key would leave values _un_sorted, and vice versa.
-
-To access items in a JS object, you can use the same square bracket notation as
-arrays.
-
-```js
-console.log(obj['keyOne']); // prints 'z'
-obj['keyOne'] = 'A';
-console.log(obj['keyOne']); // prints 'A'
-```
-
-However, it's much more common to use 'dot syntax' for doing those things.
-
-```js
-console.log(obj.keyOne); // prints 'z'
-obj.keyOne = 'A';
-console.log(obj.keyOne); // prints 'A'
-```
-
-When written this way, it's common to refer to `keyOne` and `keyTwo` as
-"properties" of the object.
-
-<!-- est 10 mins -->
 ### Code-Along: Iterate Through Arrays
 
 We're going to go through a very common pattern - using a 'for' loop to step
@@ -463,7 +404,7 @@ for (var i = 0; i <= numbers.length - 1; i += 1) { //could also be i < numbers.l
 console.log(sum);
 ```
 
-<!-- est 20 mins -->
+<!-- est 40 mins -->
 ### Exercise: Iteratively Edit Objects
 
 Now that we've seen iteration, let's try iterating through an array of objects.
@@ -486,7 +427,7 @@ each name using commas and appropriate spaces (assume Oxford comma).
 <!-- est 10 mins -->
 ### Code-Along: Manipulate the DOM
 
-One last note before getting started:
+One note before getting started:
 We can run JS code in the browser console and access the DOM that
 way, but in order to actually load a JS file from our HTML, like we did with CSS
 earlier today, we need to include a `<script>` tag whose `src` property is set
@@ -514,23 +455,16 @@ inside the `<link>` tag).
           <li> See the doctor </li>
         </ul>
       </body>
+      <script src='https://code.jquery.com/jquery-3.1.0.js'></script>
       <script src='javascripts/main.js'></script>
     </html>
     ```
-
-    > NOTE: The reason that our script tag is at the bottom of the page is
-    > so that
-    > the browser reads an HTML file from top to bottom, so putting the script
-    > at
-    > the bottom causes it to get loaded last by the browser; this is desirable
-    > because we don't want the browser to get confused by trying to change an
-    > element that doesn't exist yet.
 
 3.  Let's programatically add some styling to the top header, by increasing
     the font size to 100px.
 
     ```js
-    document.getElementsByTagName('h1')[0].style.fontSize = '100px';
+    $('h1').css('fontSize', '100px');
     ```
 
 4.  Next, let's define a new class in our CSS file called 'completed'. This will
@@ -538,7 +472,7 @@ inside the `<link>` tag).
 
     ```css
     .completed {
-      background-color: #505050;
+      background-color: #AAAAAA;
       text-decoration: line-through;
     }
     ```
@@ -546,13 +480,13 @@ inside the `<link>` tag).
     Just as an example, let's manually add that class to "See the doctor" item
     and see what happens. Then, let's remove it again.
 
-5.  OK, now let's use the DOM to grab the middle two list items and add the
+5.  OK, now let's use jQuery to grab the middle two list items and add the
     `completed` class to both of those items.
 
     ```js
-    var items = document.getElementsByTagName('li');
-    items[1].classList.add('completed');
-    items[2].classList.add('completed');
+    var items = $('li');
+    items.eq(1).addClass('completed');
+    items.eq(2).addClass('completed');
     ```
 
     What do we see in the browser?
@@ -561,54 +495,309 @@ inside the `<link>` tag).
     it looks like we may have missed a spot.
 
     ```js
-    var mow = document.getElementsByTagName('li')[3];
-    mow.classList.remove('completed');
-    // alternatively, mow.classList.toggle('completed');
+    $('li').eq(2).removeClass('completed');
+    // alternatively, $('li').eq(2).toggleClass('completed');
     ```
 
-<!-- END DAY 1 -->
-<!-- ### Exercise: Manipulate the DOM <!-- est 20 mins -->
+<!-- est 10 mins -->
+### [Read: JS Functions and DOM Event Handlers](readings/js-functions-events.md)
 
-<!-- ### Demo: Define and Invoke Functions <!-- est 10 mins -->
-
-<!-- ### Exercise: Define and Invoke Functions <!-- est 20 mins -->
-
-<!-- ### Code-Along: Set Functions as Event Handlers <!-- est 15 mins -->
-
-<!-- ### Exercise: Set Functions as Event Handlers <!-- est 20 mins -->
-
-<!--
-## Delivering Static Pages with Node <!-- -->
-
-<!-- ### Read: Node.js -->
-
-<!-- ### Code-Along: Initialize a New Node Project <!-- est 5 mins -->
-
-<!-- ### Code-Along: Set Up a Server Using the `http` Module
 <!-- est 15 mins -->
+### Code-Along: Set Functions as Event Handlers
 
-<!-- ### Exercise: Set Up a Server Using the `http` Module <!-- est 20 mins -->
+Let's revisit the To-Do app we were looking at earlier. We're going to add
+some functionality to this app by using jQuery to respond to events and trigger
+changes to the DOM. In particular, we're going to make it so that tasks can be
+checked/unchecked to indicate that they've been completed.
 
-<!-- ### Code-Along: Add Routing and Control to Your App <!-- est 20 mins -->
+1.  We'll start off by changing our HTML. In each `<li>`, we're going to add a
+    checkbox, which will indicate whether or not an item has been completed.
+    Let's also put the text content into `<span>` tags so that we can refer to
+    it more easily
 
-<!-- ### Exercise: Add Routing and Control to Your App <!-- est 25 mins -->
+    ```html
+    <body>
+      <h1> To-Do List </h1>
+      <ul>
+        <lh> Tasks to Complete </lh>
+        <li> <input type='checkbox'> <span> Buy milk </span> </li>
+        <li> <input type='checkbox'> <span> Mow the lawn </span> </li>
+        <li> <input type='checkbox'> <span> See the doctor </span> </li>
+      </ul>
+    </body>
+    ```
+
+2.  Next, we'll define an event-handling function to listen to changes in the
+    **states** (checked/unchecked) of those check-boxes; we should be able to
+    consistently trigger some behavior every time the box is checked or
+    unchecked.
+
+    ```js
+    $('li > input').on('change', function(e){ // e is an object representing the event
+      console.log('checked or unchecked a checkbox');
+    });
+    ```
+
+3.  Finally, we'll edit the content of our event handler so that whenever the
+    checkbox gets checked, the class `completed` gets added to, or removed from,
+    the `<span>` element.
+
+    ```js
+    $('li > input').on('change', function(e){ // e is an object representing the event
+      console.log('checked or unchecked a checkbox');
+      $parent = $(e.target).parent();
+      $parent.toggleClass('completed');
+    });
+    ```
+
+<!-- est 20 mins -->
+### Code-Along: Set Functions as Event Handlers
+
+We're going to add a text-field form input and a button to the bottom of the
+page. When the button gets clicked, the text in the input box will be added to
+a new task, and the box itself will be emptied.
+
+1.  First, let's just add a text box and a button.
+
+    ```html
+    <input placeholder='New Task Here'> <button id="create-task">   Create Task </button>
+    ```
+
+2.  Next, let's define an event handler to respond to the button click.
+
+    ```js
+    var createTask = function(){
+      console.log('new task');
+    };
+
+    $('#create-task').on('click', createTask);
+    ```
+
+3.  Let's now make it so that our `createTask` handler function
+
+    (a) reads the content of `#new-task-form-field` and stores it,
+
+    ```js
+    var createTask = function(){
+      console.log('new task');
+      var newTaskData = $('#new-task-form-field').val();
+    };
+    ```
+
+    (b) creates a new task on the list (with the data from the input box as its
+    content)
+
+    ```js
+    var createTask = function(){
+      console.log('new task');
+      var newTaskData = $('#new-task-form-field').val();
+      $('ul').append(`<li> <input type='checkbox'> <span> ${newTaskData} </span> </li>`);
+    };
+    ```
+
+    > That last thing there is called a **template string**, and it's a
+    > fairly new feature of JavaScript. Whenever the pattern `${ ... }`
+    > appears in a template string, JavaScript will calculate the value of
+    > whatever's in the curly braces, and then replace the entire pattern with
+    > that value, as part of the string.
+
+    (c) empties the input box again
+
+    ```js
+    var createTask = function(){
+      console.log('new task');
+      var newTaskData = $('#new-task-form-field').val();
+      $('ul').append(`<li> <input type='checkbox'> <span> ${newTaskData} </span> </li>`);
+      $('#new-task-form-field').val('')
+    };
+    ```
+
+4.  Finally, just for better code design, let's take that template string and
+    replace it with output of a function, which we'll call `buildTemplate`.
+    This will allow us build any and all template strings we might want to use
+    in one place, so we won't have to worry about it anywhere else in our code.
+    This idea is called **"separation of concerns"**.
+
+    ```js
+    var template = function(templateName, data) {
+      if (templateName === 'new-task') {
+        return `<li> <input type='checkbox'> <span> ${data} </span> </li>`
+      }
+    };
+
+    var createTask = function(){
+      console.log('new task');
+      var newTaskData = $('#new-task-form-field').val();
+      $('ul').append(template('new-task', newTaskData));
+      $('#new-task-form-field').val('')
+    };
+    ```
+
+Let's reflect briefly about how these responsibilities have been broken out
+across the different functions:
+
+1.  Our jQuery event handler responds to input from the user, and triggers
+    `createTask` to do the actual work of creating the Task.
+
+2.  `createTask` reads data (in this case, from a form field) and uses it to
+    load a particular template string from `template` and populate it; then,
+    it sends the finished HTML string back to the user as part of the UI.
+
+3.  `template` provides a standard way of organizing and managing our template
+    strings. Though there's only one now, this app is fairly simple, and it's
+    quite conceivable that we might want to use other templates in the future.
+
+This is a very common pattern, and one we'll soon see repeated on the back end.
+
+## Delivering Static Pages with Node
+
+<!-- est 5 mins -->
+### Setup
+
+1.  Open up a new workspace on Cloud9 called `node-app`, and build it off of the
+    Node.js template.
+
+2.  Delete the `client` directory, and the `node_modules` directory.
+
+3.  Delete everything inside `server.js`, and replace the contents of
+    `package.json` with the following:
+
+    ```json
+    {
+      "name": "node-app",
+      "version": "0.0.0",
+      "description": "An example Node web application",
+      "main": "server.js",
+      "repository": "",
+      "author": "",
+      "license": "MIT",
+      "dependencies": {
+      }
+    }
+    ```
+
+That's all for now; we'll do some more when we get to talking about databases.
+
+### [Read: Server-Side JS with Node](readings/nodejs.md)
+
+<!-- est 10 mins -->
+### Code-Along : Set Up a Server Using the `http` Module
+
+We're going to follow the pattern laid out in the reading and create a new Node
+project called `node-app` which runs a simple web server.
+We've already set up the basics of our app, so let's just dive into writing the
+code.
+
+1.  To start off with, we're going to want to use the [`http`](https://nodejs.org/api/http.html)
+    node module, to create our server. `http` is one of the default Node
+    libraries, so we don't need to download and install it. However, we do still
+    need to `require` it if we want to use it.
+
+    ```js
+    var http = require('http');
+    ```
+
+2.  Next, we're going to use `http`'s `createServer` method to define a new
+    HTTP server object. As part of the definition of the server, we'll pass in
+    a function that tells the server how to respond to an incoming request.
+
+    ```js
+    var server = http.createServer(function(request, response){
+      console.log('Hit the server!');
+      console.log('request method:', request.method);
+      console.log('request url:', request.url);
+      response.end();
+    });
+    ```
+
+    The two inputs to that function will be two objects, representing
+    (respectively) the inbound request that's being handled and the new response
+    that's being formulated.
+
+3.  Launch the server by telling it to start listening to a particular port.
+
+    ```js
+    server.listen(4000);
+    ```
+
+    We can test whether or not the server is on by going to
+    `localhost:4000` in a web browser and refreshing the page.
+    Each time we do that, the terminal window where our server is running
+    should print out some text.
+
+4.  Finally, let's have our server respond to these requests by echoing back
+    what type of request it reeived.
+
+    ```js
+    var server = http.createServer(function(request, response){
+      console.log('Hit the server!');
+      console.log('request method:', request.method);
+      console.log('request url:', request.url);
+      response.write(`Received a ${request.method} request at ${request.url}\n`);
+      response.end();
+    });
+    ```
+
+    That's it! We now have a fully-functioning webserver running, made up of
+    fewer than 10 lines of code (1/3 of which are just printing text in the
+    console).
+
+    But wait... if we're sending back text, can we also send back HTML?
+
+5.  Yes, yes we can. Let's write a short function which will wrap up any text
+    we give it into some boilerplate HTML.
+
+    ```js
+    var htmlPage = function(content){
+      return
+      `<html>
+        <head>
+        </head>
+        <body>
+          ${content}
+        </body>
+      </html>`;
+    };
+    ```
+
+    If we combine that function with our existing server setup, we can have our
+    app spit back HTML instead of plain text.
+
+    ```js
+    var server = http.createServer(function(request, response){
+      console.log('Hit the server!');
+      console.log('request method:', request.method);
+      console.log('request url:', request.url);
+      var content = `<h1> Received a ${request.method} request at ${request.url} </h1>`
+      response.write(htmlPage(content));
+      response.end();
+    });
+    ```
+
+<!-- est 20 mins -->
+### Code-Along : Add Routing
+
+### Exercise: Add More Routing <!-- est 25 mins -->
+
+Now that we've set up this application, add some more routes and responses.
+
 
 <!--
 ## Delivering Dynamic Pages with Node <!-- est 120 mins -->
 
-<!-- ### Code-Along: Make Template Strings <!-- est 10 mins -->
-
 <!-- ### Code-Along: Serve Template Strings <!-- est 15 mins -->
 
 <!-- ### Exercise: Add 'View' Templates to Your App <!-- est 20 mins -->
-
-<!-- ### Exercise: Do It All Again! <!-- est 20mins -->
 
 <!--
 ## Serving Data from a Database <!-- est 25 mins -->
 
 <!-- ### Read and Code: SQL Databases <!-- 10 mins -->
 
-<!-- ### Read and Code: NoSQL Databases <!-- 10 mins -->
-
 <!-- ### Read: ORMs <!-- 5 mins -->
+
+
+
+<!-- ### Read : NoSQL Databases <!-- 10 mins -->
+
+## Next Steps
