@@ -895,4 +895,4 @@ sort of error message.
 
 <!-- ### Read : NoSQL Databases <!-- 10 mins -->
 
-## [Next Steps](readings/next-steps/md)
+## [Next Steps](readings/next-steps.md)
